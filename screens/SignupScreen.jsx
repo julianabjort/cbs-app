@@ -1,8 +1,7 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { View, SafeAreaView, Text, Image, Button, TextInput, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, TextInput, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { signup } from './../store/actions/UserActions';
-import { useState } from 'react'
+import { restoreUser, signup } from './../store/actions/UserActions';
+import { useEffect, useState } from 'react'
 import * as SecureStore from 'expo-secure-store';
 
 import colors from '../config/colors';
@@ -13,19 +12,26 @@ const SignupScreen = ({ navigation }) => {
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
     const e = useSelector(state => state.user.email);
     const idToken = useSelector(state => state.user.idToken);
 
     async function load() {
-        let emailFromSecureStore = await SecureStore.getItemAsync('email')
-        let tokenFromSecureStore = await SecureStore.getItemAsync('idToken')
+        let emailFromSecureStore = await SecureStore.getItemAsync('email');
+        let tokenFromSecureStore = await SecureStore.getItemAsync('token');
         if (emailFromSecureStore && tokenFromSecureStore) {
             console.log("success", emailFromSecureStore);
-            dispatch()
+
+            dispatch(restoreUser(emailFromSecureStore, tokenFromSecureStore));
+
+        } else {
+            console.log("user logged out");
         }
-        else 
-            console.log("failure")
     }
+
+    useEffect(() => {
+        load(); // uncomment to read from secure store
+    }, [])
     
     return (
         <View style={{ backgroundColor: "white"}}>
@@ -35,9 +41,23 @@ const SignupScreen = ({ navigation }) => {
             <Text style={styles.title}>Create your account</Text>
 
             <View style={[styles.inputContainer, styles.shadowProp]}>
+
+            <TextInput 
+                style={styles.signUpInput} 
+                placeholder="Name"
+                placeholderTextColor={colors.medium}
+                onChangeText={setUsername}
+                value={username}
+                autoCapitalize = 'none'
+                autoCorrect={false}
+                 /> 
+
             <TextInput 
                 style={styles.signUpInput} 
                 placeholder="Email"
+                placeholderTextColor={colors.medium}
+                keyboardType="email-address"
+                textContentType="emailAddress"
                 onChangeText={setEmail}
                 value={email}
                 autoCapitalize = 'none'
@@ -47,17 +67,18 @@ const SignupScreen = ({ navigation }) => {
             <TextInput 
                 style={styles.signUpInput} 
                 placeholder="Password"
+                placeholderTextColor={colors.medium}
                 onChangeText={setPassword}
                 value={password}
                 autoCapitalize = 'none'
                 autoCorrect={false}
                 secureTextEntry={true}
+                textContentType="password"
                  />
+
             
-            <TextInput 
-                style={styles.signUpInput} 
-                placeholder="Repeat Password"
-                 />
+            
+          
             </View>
             
             <Text style={styles.signUpInput} >
@@ -87,7 +108,8 @@ const styles = StyleSheet.create({
         height: '100%',
         marginVertical: 10,
         marginHorizontal: 30,
-        alignItems: 'center'
+        alignItems: 'center',
+        
     },
     logo: {
         width: 150,

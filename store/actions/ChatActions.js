@@ -17,7 +17,6 @@ export const fetchChatrooms = () => {
             }
         });
 
-
         const data = await response.json(); // json to javascript
         if (!response.ok) {
             //There was a problem..
@@ -29,7 +28,7 @@ export const fetchChatrooms = () => {
                 chatrooms.push(chatroom)
                 // console.log(data[key].name)​
             }
-
+            chatrooms.reverse()
             dispatch({ type: FETCH_CHATROOMS, payload: chatrooms })
         }
     };
@@ -48,13 +47,13 @@ export const addChatroom = (chatroomName) => {
             })
         });
         const data = await response.json(); // json to javascript
+        console.log(data) 
  
         if (!response.ok) {
-            //There was a problem..
+            console.log("Error")
         } else {
-             
-            dispatch({type: ADD_CHATROOM, payload: {chatroomName, id: data.name}})
-            
+            const chatroom = new Chatroom(chatroomName, '', '', data.name);
+            dispatch({type: ADD_CHATROOM, payload: chatroom })  
         };
  };
 };
@@ -73,12 +72,12 @@ export const deleteChatroom = (id) => {
             },
         });
 
-
         const data = await response.json(); // json to javascript
         if (!response.ok) {
             //There was a problem..
         } else {
             dispatch({ type: DELETE_CHATROOM, payload: id })
+            console.log(id)
         }
     };
 }

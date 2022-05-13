@@ -8,8 +8,8 @@ const initialState = {
 const chatReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_CHATROOM:
-            const chatroom = new Chatroom(action.payload, [], '', action.payload.id);
-            const newChatroomArray = [...state.chatrooms, chatroom];
+            // const chatroom = new Chatroom(action.payload, [], '', action.payload.id);
+            const newChatroomArray = [...state.chatrooms, action.payload];
             return { ...state, chatrooms: newChatroomArray }
         case DELETE_CHATROOM:
             return {...state, chatrooms: state.chatrooms.filter(chatroom => chatroom.id !== action.payload)}

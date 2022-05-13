@@ -1,16 +1,17 @@
 import { View, TextInput, StyleSheet, Image, Text } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Input from '../components/Input';
 
 const DiscoverScreen = ({ navigation }) => {
 
     return (
         <View>
-                <View style={[styles.searchInput, styles.shadowProp]}>
-                    <TextInput 
-                        style={styles.searchInputText} 
-                        placeholder="Search for events, posts and more"
-                        />
-                </View>
-
+                <Input
+                style={styles.shadowProp}
+                placeholder="Search for events, posts and more"
+                icon="search"
+                />
+                
                 <View style={[styles.card, styles.shadowProp]}>
                 <Image style={styles.image} source={require('../assets/event.png')}/>
                     <Text style={styles.title}>All Events</Text>
@@ -35,11 +36,13 @@ const styles = StyleSheet.create({
     searchInput: {
         backgroundColor: "white",
         borderRadius: 10,
-        paddingVertical: 20,
+        paddingVertical: 18,
+        paddingLeft: 10,
         margin: 20,
+        flexDirection: 'row'
     },
     searchInputText: {
-        marginLeft: 20
+        marginLeft: 10
     },
     shadowProp: {
         shadowColor: 'grey',
@@ -51,7 +54,7 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         borderRadius: 10,
         marginHorizontal: 20,
-        marginVertical: 10,
+        marginVertical: 16,
         height: "20%",
         justifyContent: 'center',
         alignItems: 'center'

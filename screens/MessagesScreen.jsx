@@ -12,8 +12,6 @@ export default function ChatScreen() {
         dispatch(fetchChatrooms())
     }, []);
 
-    console.log("chatrooms", chatrooms);
-
     const renderItem = ({ item }) => (
         <TouchableOpacity>
             <Text>{item.title}</Text>

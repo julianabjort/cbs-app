@@ -1,15 +1,18 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ChatScreen from "./../screens/ChatScreen";
+import MessagesScreen from "./../screens/MessagesScreen";
+import StartScreen from "./../screens/StartScreen";
 import HomeScreen from "./../screens/HomeScreen";
-import MenuScreen from "./../screens/MenuScreen";
+import ProfileScreen from "./../screens/ProfileScreen";
 import DiscoverScreen from "./../screens/DiscoverScreen";
 import SignupScreen from "./../screens/SignupScreen";
 import LoginScreen from "./../screens/LoginScreen";
+import EditScreen from "../screens/EditScreen";
 import { NavigationContainer } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import colors from '../config/colors';
 
 
 const Stack = createNativeStackNavigator();
@@ -36,8 +39,6 @@ const NavigationComponent = ({ navigation }) => {
                       } else if (route.name === 'Profile') {
                         iconName = focused ? 'person' : 'person';
                       }
-          
-                      // You can return any component that you like here!
                       return <Ionicons name={iconName} size={size} color={color} />;
                       
                     },
@@ -47,8 +48,9 @@ const NavigationComponent = ({ navigation }) => {
                 >
                 <Tab.Screen name="Home" component={HomeScreen} />
                 <Tab.Screen name="Discover" component={DiscoverScreen} />
-                <Tab.Screen name="Chat" component={ChatScreen} />
-                <Tab.Screen name="Profile" component={MenuScreen} />
+                <Tab.Screen name="Chat" component={ChatScreen}/>
+                <Tab.Screen name="Profile" component={ProfileStack} />
+                <Stack.Screen name="Start" component={StartScreen} />
             </Tab.Navigator>
             ): (
                 <Stack.Navigator>
@@ -57,9 +59,17 @@ const NavigationComponent = ({ navigation }) => {
             </Stack.Navigator>
                 )}
 
-            
         </NavigationContainer >
     );
+}
+
+function ProfileStack() {
+  return (
+      <Stack.Navigator>
+          <Stack.Screen name="Profile" component={ProfileScreen} options={{headerShown:false}}></Stack.Screen>
+          <Stack.Screen name="Edit Profile" component={EditScreen} options={{headerShown:false}}></Stack.Screen>
+      </Stack.Navigator>
+  )
 }
 
 export default NavigationComponent;

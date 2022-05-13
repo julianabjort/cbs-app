@@ -13,7 +13,7 @@ function MainButton({ title, onPress, backgroundColor = 'primary', color = 'whit
 
 const styles = StyleSheet.create({
     button: {
-        borderRadius: 6,
+        borderRadius: 20,
         paddingVertical: 15,
         marginBottom: 40
     },
@@ -22,12 +22,12 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center'
     },
-    shadowProp: {
-        shadowColor: 'grey',
-        shadowOffset: {width: 2, height: 4},
-        shadowOpacity: 0.2,
-        shadowRadius: 6
-    },
+    // shadowProp: {
+    //     shadowColor: 'grey',
+    //     shadowOffset: {width: 2, height: 4},
+    //     shadowOpacity: 0.2,
+    //     shadowRadius: 6
+    // },
 })
 
 export default MainButton;
