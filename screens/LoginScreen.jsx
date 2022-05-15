@@ -1,4 +1,3 @@
-import { NavigationContainer } from '@react-navigation/native';
 import { View, Text, Image, Button, TextInput, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { login, restoreUser } from './../store/actions/UserActions';
@@ -88,6 +87,7 @@ const LoginScreen = ({ navigation }) => {
             onPress={() => navigation.navigate('Signup')}
             style={styles.signupButtonText}> Sign up</Text> 
         </Text> 
+        
         </View>
     </View>
 );

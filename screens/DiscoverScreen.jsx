@@ -5,9 +5,9 @@ import Input from '../components/Input';
 const DiscoverScreen = ({ navigation }) => {
 
     return (
-        <View>
+        <View style={styles.container}>
                 <Input
-                style={styles.shadowProp}
+                style={[styles.shadowProp, styles.input]}
                 placeholder="Search for events, posts and more"
                 icon="search"
                 />
@@ -32,29 +32,22 @@ const DiscoverScreen = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-    
-    searchInput: {
-        backgroundColor: "white",
-        borderRadius: 10,
-        paddingVertical: 18,
-        paddingLeft: 10,
-        margin: 20,
-        flexDirection: 'row'
-    },
-    searchInputText: {
-        marginLeft: 10
+    container: {
+        margin: 20
     },
     shadowProp: {
         shadowColor: 'grey',
-        shadowOffset: {width: 2, height: 4},
-        shadowOpacity: 0.1,
-        shadowRadius: 5
+        shadowOffset: {width: 0, height: 2},
+        shadowOpacity: 0.2,
+        shadowRadius: 8
+    },
+    input: {
+
     },
     card: {
         backgroundColor: "white",
-        borderRadius: 10,
-        marginHorizontal: 20,
-        marginVertical: 16,
+        borderRadius: 15,
+        marginVertical: 15,
         height: "20%",
         justifyContent: 'center',
         alignItems: 'center'
@@ -62,8 +55,7 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: 120,
-        borderRadius: 10,
-        
+        borderRadius: 15,
     },
     title: { 
         position: 'absolute',
@@ -71,7 +63,6 @@ const styles = StyleSheet.create({
         color: 'white', 
         fontWeight: 'bold'
     },
-    
 });
 
 export default DiscoverScreen;

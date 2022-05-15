@@ -9,9 +9,9 @@ function Input({ icon, ...otherProps }){
 
     return (
         <View style={styles.container}>
-            {icon && <Ionicons name={icon} size={20} color={colors.light} />}
+            {icon && <Ionicons name={icon} size={20} color={colors.light} style={styles.icon} />}
             <TextInput 
-                style={styles.textInput} {...otherProps}
+                {...otherProps}
                 />   
         </View>
     );
@@ -20,25 +20,18 @@ function Input({ icon, ...otherProps }){
 const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.white,
-        borderRadius: 20,
+        borderRadius: 15,
         padding: 15,
         marginVertical: 10,
         flexDirection: 'row',
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2
-        },
-        shadowOpacity: 0.1,
-        shadowRadius: 5,
+        shadowColor: 'grey',
+        shadowOffset: {width: 0, height: 2},
+        shadowOpacity: 0.2,
+        shadowRadius: 8
     },
-    textInput: {
-        marginLeft: 10
-    },
-    icon:{
-        marginRight:10
-    },
-    
+    icon: {
+        marginRight: 10
+    }
 })
 
 export default Input;

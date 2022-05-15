@@ -93,14 +93,16 @@ const [text, onChangeText] = useState('');
             renderRightActions={() => (
                 <View
                 style={{ backgroundColor: colors.red,
-                width: 70, justifyContent: 'center', alignItems: 'center'
-                }}
-                >
-                <Ionicons name="trash" size={24} color="white" onPress={() => dispatch(deleteChatroom(item.id))}/>
+                width: 70, justifyContent: 'center', alignItems: 'center'}}>
+                <Ionicons 
+                    name="trash" 
+                    size={24} 
+                    color="white" 
+                    onPress={() => dispatch(deleteChatroom(item.id))}/>
                 </View>
             )}
-            />)}
-        ItemSeparatorComponent={ListItemSeparator}
+        />)}
+        // ItemSeparatorComponent={ListItemSeparator}
         />
     
         <FlatList 
@@ -115,14 +117,13 @@ const [text, onChangeText] = useState('');
             renderRightActions={() => (
                 <View
                 style={{ backgroundColor: colors.red,
-                width: 70, justifyContent: 'center', alignItems: 'center'
-                }}
-                >
+                width: 70, justifyContent: 'center', alignItems: 'center'}}>
                 <Ionicons name="trash" size={24} color="white" />
                 </View>
             )}
+            
             />)}
-        ItemSeparatorComponent={ListItemSeparator}
+        // ItemSeparatorComponent={ListItemSeparator}
         />
 
 

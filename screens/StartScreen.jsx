@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import React from 'react';
 import { useState, useEffect } from 'react'
+import DropDownPicker from 'react-native-dropdown-picker';
 
 import Title from '../components/Title';
 import MainButton from '../components/MainButton';
@@ -10,10 +11,22 @@ import colors from '../config/colors';
 import { addUserInfo } from '../store/actions/UserActions';
 
 function StartScreen(props) {
+// const dropDownTheme = require("../config/DropDown");
+// DropDownPicker.addTheme("ExtraLight", dropDownTheme);
+// DropDownPicker.setTheme("ExtraLight");
 
 const [username, setUsername] = useState('');
 const [programme, setProgramme] = useState('');
 const dispatch = useDispatch();
+const [open, setOpen] = useState(false);
+  const [items, setItems] = useState([
+    {label: 'International Business', value: 'International Business'},
+    {label: 'International Shipping and Trade', value: 'International Shipping and Trade'},
+    {label: 'International Business in Asia', value: ' International Business in Asia'},
+    {label: 'Business, Language and Culture', value: ' Business, Language and Culture'},
+    {label: 'International Business and Politics', value: 'International Business and Politics'},
+    {label: 'Business Administration and Sociology', value: 'Business Administration and Sociology'},
+]);
 
 
    return (
@@ -45,12 +58,20 @@ const dispatch = useDispatch();
                 placeholder="Full Name"
             />
             <Text style={styles.text}>Choose your study programme</Text>
-            <Input
-                onChangeText={setProgramme}
-                label="Programme"
+            
+            <DropDownPicker
+                placeholder="Select"
+                open={open}
                 value={programme}
-                placeholder="Study Programme"
-            />
+                items={items}
+                setOpen={setOpen}
+                setValue={setProgramme}
+                setItems={setItems}
+                style={styles.dropDown}
+                placeholderStyle={{
+                    color: "grey"}}
+                searchable={true}
+    />
            
             <MainButton 
                     title="Continue"
@@ -67,6 +88,9 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: colors.white,
         flex: 1
+    },
+    dropDown: {
+        backgroundColor: 'white'
     },
     text: {
         paddingLeft: 12

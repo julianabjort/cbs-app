@@ -1,7 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ChatScreen from "./../screens/ChatScreen";
-import MessagesScreen from "./../screens/MessagesScreen";
 import StartScreen from "./../screens/StartScreen";
 import HomeScreen from "./../screens/HomeScreen";
 import ProfileScreen from "./../screens/ProfileScreen";
@@ -12,12 +11,9 @@ import EditScreen from "../screens/EditScreen";
 import { NavigationContainer } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import colors from '../config/colors';
-
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-
 
 const NavigationComponent = ({ navigation }) => {
     // subscribe to the store
@@ -54,11 +50,10 @@ const NavigationComponent = ({ navigation }) => {
             </Tab.Navigator>
             ): (
                 <Stack.Navigator>
-                <Stack.Screen name="Signup" component={SignupScreen} />
-                <Stack.Screen name="Login" component={LoginScreen} />
-            </Stack.Navigator>
+                  <Stack.Screen name="Signup" component={SignupScreen} />
+                  <Stack.Screen name="Login" component={LoginScreen} />
+                </Stack.Navigator>
                 )}
-
         </NavigationContainer >
     );
 }
@@ -66,8 +61,9 @@ const NavigationComponent = ({ navigation }) => {
 function ProfileStack() {
   return (
       <Stack.Navigator>
-          <Stack.Screen name="Profile" component={ProfileScreen} options={{headerShown:false}}></Stack.Screen>
-          <Stack.Screen name="Edit Profile" component={EditScreen} options={{headerShown:false}}></Stack.Screen>
+          <Stack.Screen name="View Profile" component={ProfileScreen} options={{headerShown:false}}></Stack.Screen>
+          <Stack.Screen name="Edit Profile" component={EditScreen}></Stack.Screen>
+          
       </Stack.Navigator>
   )
 }

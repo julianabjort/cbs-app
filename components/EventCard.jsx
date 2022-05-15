@@ -38,9 +38,9 @@ const styles = StyleSheet.create({
     
     shadowProp: {
         shadowColor: 'grey',
-        shadowOffset: {width: 2, height: 4},
-        shadowOpacity: 0.1,
-        shadowRadius: 5
+        shadowOffset: {width: 0, height: 2},
+        shadowOpacity: 0.2,
+        shadowRadius: 8
     },
 })
 

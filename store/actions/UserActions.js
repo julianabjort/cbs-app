@@ -6,7 +6,8 @@ export const SIGNUP = 'SIGNUP';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const RESTORE_USER = 'RESTORE_USER';
-export const ADD_USER_INFO = 'ADD_USER_INFO'
+export const ADD_USER_INFO = 'ADD_USER_INFO';
+export const FETCH_USER_INFO = 'FETCH_USER_INFO';
 
 export const logout = () => {
     SecureStore.deleteItemAsync('email');
@@ -76,9 +77,12 @@ export const login = (email, password) => {
  };
 
  export const addUserInfo = (username, programme) => {
+    
     return async (dispatch, getState) => {
         const idToken = getState().user.idToken
         const id = getState().user.localId
+        console.log("id from add user action", id)
+
         const response = await fetch('https://cbs-webdev-default-rtdb.europe-west1.firebasedatabase.app/users.json?auth=' + idToken, {
             method: 'POST',
             headers: {
@@ -105,6 +109,37 @@ export const login = (email, password) => {
             dispatch({type: ADD_USER_INFO, payload: {username: username, programme: programme, id: id} })  
         };
  };
+};
+
+export const fetchUserInfo = () => {
+    return async (dispatch, getState) => {
+        const idToken = getState().user.idToken
+
+        const response = await fetch(
+            'https://cbs-webdev-default-rtdb.europe-west1.firebasedatabase.app/users.json?auth='
+            + idToken, {
+
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const data = await response.json(); // json to javascript
+        if (!response.ok) {
+            //There was a problem..
+        } else {
+            console.log(data)
+
+            let users = [];
+            for (const key in data) {
+                let user = new User(data[key], '', '')
+                users.push(user)
+            }
+           
+            dispatch({ type: FETCH_USER_INFO, payload: users })
+        }
+    };
 };
 
 

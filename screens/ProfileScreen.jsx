@@ -1,17 +1,25 @@
 import { View, Text, StyleSheet, Image, Switch } from 'react-native';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 
 import { logout } from '../store/actions/UserActions';
 import Title from '../components/Title';
 import MainButton from '../components/MainButton';
+import { fetchUserInfo } from '../store/actions/UserActions';
 
 const ProfileScreen = ({ navigation }) => {
     const [chatOn, setChatOn] = useState(false);
     const [eventOn, setEventOn] = useState(false);
     const email = useSelector(state => state.user.email);
     const username = useSelector(state => state.user.username);
+    const programme = useSelector(state => state.user.programme);
+    console.log(programme)
+
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(fetchUserInfo())
+    }, []);
 
     return ( 
     <View style={styles.mainContainer}>

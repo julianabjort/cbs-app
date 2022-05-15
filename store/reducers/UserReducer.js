@@ -1,4 +1,4 @@
-import { SIGNUP, RESTORE_USER, LOGIN, LOGOUT, ADD_USER_INFO } from "../actions/UserActions";
+import { SIGNUP, RESTORE_USER, LOGIN, LOGOUT, ADD_USER_INFO, FETCH_USER_INFO } from "../actions/UserActions";
 
 
 const initialState = {
@@ -6,7 +6,8 @@ const initialState = {
     idToken: undefined,
     localId: undefined,
     username: undefined,
-    programme: undefined
+    programme: undefined,
+    users: []
   
 };
 
@@ -27,9 +28,14 @@ const userReducer = (state = initialState, action) => {
     
         case ADD_USER_INFO:
             console.log("reducer adduserinfo", action.payload)
+            const id = [...state.localId, action.payload];
             const newUsername = [...state.username, action.payload];
             const newProgramme = [...state.programme, action.payload];
-            return { ...state, username: newUsername, programme: newProgramme }
+            return { ...state, username: newUsername, programme: newProgramme, id: id }
+
+        case FETCH_USER_INFO:
+            console.log(action.payload)
+            return { ...state, users: action.payload }
 
         default:
             return state;

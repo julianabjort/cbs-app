@@ -26,7 +26,8 @@ export const fetchChatrooms = () => {
             for (const key in data) {
                 let chatroom = new Chatroom(data[key].chatroomName, [], '', key)
                 chatrooms.push(chatroom)
-                // console.log(data[key].name)​
+                // console.log(data[key].name)​;
+                
             }
             chatrooms.reverse()
             dispatch({ type: FETCH_CHATROOMS, payload: chatrooms })
@@ -47,7 +48,7 @@ export const addChatroom = (chatroomName) => {
             })
         });
         const data = await response.json(); // json to javascript
-        console.log(data) 
+        console.log("add chatroom action", data) 
  
         if (!response.ok) {
             console.log("Error")
@@ -72,7 +73,7 @@ export const deleteChatroom = (id) => {
             },
         });
 
-        const data = await response.json(); // json to javascript
+        const data = await response.json();
         if (!response.ok) {
             //There was a problem..
         } else {

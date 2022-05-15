@@ -31,7 +31,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: 15,
         alignItems: 'center',
-        width: '100%'
+        width: '100%',
+        borderBottomWidth: 0.5,
+        borderColor: colors.light
     },
     image: {
         width: 70,
