@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ChatScreen from "./../screens/ChatScreen";
 import StartScreen from "./../screens/StartScreen";
 import HomeScreen from "./../screens/HomeScreen";
+import EventScreen from "./../screens/EventScreen";
 import ProfileScreen from "./../screens/ProfileScreen";
 import DiscoverScreen from "./../screens/DiscoverScreen";
 import SignupScreen from "./../screens/SignupScreen";
@@ -16,11 +17,12 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const NavigationComponent = ({ navigation }) => {
-    // subscribe to the store
-    const token = useSelector(state => state.user.idToken)
+    const username = useSelector(state => state.user.username)
+    const registered = useSelector(state => state.user.registered)
+    // const token = useSelector(state => state.user.idToken)
     return (
         <NavigationContainer >
-            {token !== undefined ? (
+            {username !== undefined || registered == true ? (
                 <Tab.Navigator 
                 screenOptions={({ route }) => ({
                     tabBarIcon: ({ focused, color, size }) => {
@@ -42,15 +44,15 @@ const NavigationComponent = ({ navigation }) => {
                     tabBarInactiveTintColor: 'gray',
                   })}
                 >
-                <Tab.Screen name="Home" component={HomeScreen} />
+                <Tab.Screen name="Home" component={HomeStack} />
                 <Tab.Screen name="Discover" component={DiscoverScreen} />
                 <Tab.Screen name="Chat" component={ChatScreen}/>
                 <Tab.Screen name="Profile" component={ProfileStack} />
-                <Stack.Screen name="Start" component={StartScreen} />
             </Tab.Navigator>
             ): (
                 <Stack.Navigator>
                   <Stack.Screen name="Signup" component={SignupScreen} />
+                  <Stack.Screen name="Start" component={StartScreen} />
                   <Stack.Screen name="Login" component={LoginScreen} />
                 </Stack.Navigator>
                 )}
@@ -61,9 +63,18 @@ const NavigationComponent = ({ navigation }) => {
 function ProfileStack() {
   return (
       <Stack.Navigator>
-          <Stack.Screen name="View Profile" component={ProfileScreen} options={{headerShown:false}}></Stack.Screen>
-          <Stack.Screen name="Edit Profile" component={EditScreen}></Stack.Screen>
-          
+          <Stack.Screen name="View Profile" component={ProfileScreen} options={{headerShown:false}} />
+          <Stack.Screen name="Start" component={StartScreen} />
+          <Stack.Screen name="Edit Profile" component={EditScreen} />
+      </Stack.Navigator>
+  )
+}
+
+function HomeStack() {
+  return (
+      <Stack.Navigator>
+          <Stack.Screen name="Home Screen" component={HomeScreen} options={{headerShown:false}}/>
+          <Stack.Screen name="View Event" component={EventScreen}/>
       </Stack.Navigator>
   )
 }

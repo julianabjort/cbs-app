@@ -1,8 +1,12 @@
-import { FlatList } from 'react-native';
+import { FlatList, View, StyleSheet, Modal } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useState } from 'react'
 import EventCard from '../components/EventCard';
-import { Chatroom } from '../entities/Chatroom';
+import colors from '../config/colors';
+import Title from '../components/Title';
+import MainButton from '../components/MainButton';
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
 // const chatroom = new Chatroom(2, [], '');
     const events = [
         {
@@ -11,7 +15,7 @@ const HomeScreen = () => {
             title: "Yoga and meditation",
             subTitle: "CBS Yoga",
             date: "Mon, 1.apr 15:00 - 18:00",
-            location: "Daigas Have, 2000 Frederiksberg"
+            location: "Daigas Have, 2000 Frederiksberg",
     },
     {
             id: 2,
@@ -33,6 +37,8 @@ const HomeScreen = () => {
 
     return (
    
+        <View>
+
         <FlatList 
         data={events}
         keyExtractor={event => event.id.toString()}
@@ -42,11 +48,10 @@ const HomeScreen = () => {
             subTitle={item.subTitle}
             date={item.date}
             location={item.location}
-            onPress={() => console.log("Message selected", item)}
-            />)}
-        
-        />
-        
+            onPress={() => navigation.navigate('View Event', { event: item })}
+            />)}/>
+        </View>
 );}
+
 
 export default HomeScreen;

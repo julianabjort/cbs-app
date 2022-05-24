@@ -1,17 +1,25 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableHighlight } from 'react-native';
 import Title from './Title';
+import colors from '../config/colors';
 
-function EventCard({ image, title, subTitle, date, location }) {
+function EventCard({ image, title, subTitle, date, location, onPress }) {
     return (
             <View style={[styles.card, styles.shadowProp]}>
-                <Image style={styles.image}source={image}/>
-                <View style={styles.content}>
-                    <Title style={styles.text}>{title}</Title>
-                    <Text style={styles.text}>{subTitle}</Text>
-                    <Text style={styles.text}>{date}</Text>
-                    <Text style={styles.text}>{location}</Text>
+                <TouchableHighlight
+                onPress={onPress}
+                underlayColor={colors.lighter}
+                >
+                <View>
+                    <Image style={styles.image}source={image}/>
+                    <View style={styles.content}>
+                        <Title style={styles.text}>{title}</Title>
+                        <Text style={styles.text}>{subTitle}</Text>
+                        <Text style={styles.text}>{date}</Text>
+                        <Text style={styles.text}>{location}</Text>
+                    </View>
                 </View>
+                </TouchableHighlight>
             </View>
     )
 }

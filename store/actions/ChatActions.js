@@ -48,7 +48,7 @@ export const addChatroom = (chatroomName) => {
             })
         });
         const data = await response.json(); // json to javascript
-        console.log("add chatroom action", data) 
+        console.log("add chatroom action", data) // why doesnt this contain chatroomName?
  
         if (!response.ok) {
             console.log("Error")

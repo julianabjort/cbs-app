@@ -11,9 +11,11 @@ const ProfileScreen = ({ navigation }) => {
     const [chatOn, setChatOn] = useState(false);
     const [eventOn, setEventOn] = useState(false);
     const email = useSelector(state => state.user.email);
-    const username = useSelector(state => state.user.username);
-    const programme = useSelector(state => state.user.programme);
-    console.log(programme)
+
+
+    const id = useSelector(state => state.user.localId);
+    const users = useSelector(state => state.user.users);
+    const user = users.filter(user => user.id == id)[0]
 
     const dispatch = useDispatch()
 
@@ -26,9 +28,16 @@ const ProfileScreen = ({ navigation }) => {
         <View style={styles.userInfoContainer}>
             <Image style={styles.profileImg} source={require('../assets/laufey.jpeg')}></Image>
             <View style={styles.userInfo}>
-                <Title>{username}</Title>
+                
+            { user !== undefined ? 
+            <View>
+                <Title>{user.username}</Title>
                 <Text>{email}</Text>
-                <Text>Project Management</Text>
+                <Text>{user.programme}</Text>
+            </View>
+                :
+                <Title>{email}</Title>
+            }   
             </View>
         </View>
 

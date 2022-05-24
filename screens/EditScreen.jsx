@@ -41,7 +41,7 @@ function EditScreen(){
                 valid={validUsername}
                 setValid={setValidUsername}
             />
-           <InputEdit label="Hi" inputValue="" error="Cannot be empty" />
+           <InputEdit label="Programme" inputValue="" error="Cannot be empty" />
             <MainButton 
                     title="Save Changes"
                     style={styles.saveButton}

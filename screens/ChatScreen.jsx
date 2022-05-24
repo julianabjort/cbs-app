@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react'
 
 import { addChatroom, deleteChatroom, fetchChatrooms } from '../store/actions/ChatActions';
+import { fetchUserInfo } from '../store/actions/UserActions';
 
 import ListItem from '../components/ListItem';
 import ListItemSeparator from '../components/ListItemSeparator';
@@ -54,11 +55,19 @@ export default function ChatScreen(props) {
 const [modalVisible, setModalVisible] = useState(false);
 const username = useSelector(state => state.user.username);
 const [text, onChangeText] = useState('');
-    const dispatch = useDispatch();
-    const chatrooms = useSelector(state => state.chat.chatrooms);
+const dispatch = useDispatch();
+const chatrooms = useSelector(state => state.chat.chatrooms);
+
+const id = useSelector(state => state.user.localId);
+const users = useSelector(state => state.user.users);
+const user = users.filter(user => user.id == id)[0]
 
     useEffect(() => {
         dispatch(fetchChatrooms())
+    }, []);
+
+    useEffect(() => {
+        dispatch(fetchUserInfo())
     }, []);
 
     // const renderItem = ({ item }) => (
@@ -73,7 +82,13 @@ const [text, onChangeText] = useState('');
     <View>
 
         <View style={styles.top}>
-        <Title>{username}</Title>
+        
+        { user !== undefined ? 
+          
+                <Title>{user.username}</Title>
+                :
+                <Title>Chat</Title>
+            }
         <Ionicons name="create-outline" size={24} color={colors.primary} onPress={() => setModalVisible(true)}/>
         </View>
 
@@ -147,7 +162,6 @@ const [text, onChangeText] = useState('');
                             autoCorrect={false}
                             icon="search"
                             />
-                    
                     
                     <View style={styles.modalButtons}>
                         <MainButton 

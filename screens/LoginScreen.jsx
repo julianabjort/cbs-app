@@ -1,4 +1,4 @@
-import { View, Text, Image, Button, TextInput, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, TextInput, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { login, restoreUser } from './../store/actions/UserActions';
 import { useState, useEffect } from 'react'
@@ -6,26 +6,23 @@ import * as SecureStore from 'expo-secure-store';
 
 import colors from '../config/colors';
 import MainButton from '../components/MainButton';
+import ErrorMessage from '../components/ErrorMessage';
 
 const LoginScreen = ({ navigation }) => {
 
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const e = useSelector(state => state.user.email);
-    const idToken = useSelector(state => state.user.idToken);  
+    const [password, setPassword] = useState(''); 
+    const errorMessage = useSelector(state => state.user.errorMessage);
     
     async function load() {
         let emailFromSecureStore = await SecureStore.getItemAsync('email');
         let tokenFromSecureStore = await SecureStore.getItemAsync('token');
-        console.log(tokenFromSecureStore)
+        // console.log(tokenFromSecureStore)
         if (emailFromSecureStore && tokenFromSecureStore) {
-            console.log("success", emailFromSecureStore);
-
             dispatch(restoreUser(emailFromSecureStore, tokenFromSecureStore));
-
         } else {
-            console.log("failure");
+            // console.log("user logged out");
         }
     }
 
@@ -41,6 +38,13 @@ const LoginScreen = ({ navigation }) => {
         <Image style={styles.logo} source={require('../assets/logo.png')}></Image>
         
         <Text style={styles.title}>Log in to your account</Text>
+
+        { errorMessage === 'EMAIL_NOT_FOUND' ? 
+            <ErrorMessage error={'Email not found'}/>
+            : errorMessage === 'INVALID_PASSWORD' ?
+            <ErrorMessage error={'Wrong password'}/>
+            : null
+            } 
 
         <View style={[styles.inputContainer, styles.shadowProp]}>
         <TextInput 

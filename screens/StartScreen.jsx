@@ -10,10 +10,10 @@ import Input from '../components/Input';
 import colors from '../config/colors';
 import { addUserInfo } from '../store/actions/UserActions';
 
-function StartScreen(props) {
-// const dropDownTheme = require("../config/DropDown");
-// DropDownPicker.addTheme("ExtraLight", dropDownTheme);
-// DropDownPicker.setTheme("ExtraLight");
+function StartScreen({ navigation }) {
+const dropDownTheme = require("../config/DropDown");
+DropDownPicker.addTheme("ExtraLight", dropDownTheme);
+DropDownPicker.setTheme("ExtraLight");
 
 const [username, setUsername] = useState('');
 const [programme, setProgramme] = useState('');
@@ -27,7 +27,6 @@ const [open, setOpen] = useState(false);
     {label: 'International Business and Politics', value: 'International Business and Politics'},
     {label: 'Business Administration and Sociology', value: 'Business Administration and Sociology'},
 ]);
-
 
    return (
       
@@ -56,6 +55,7 @@ const [open, setOpen] = useState(false);
                 label="Username"
                 value={username}
                 placeholder="Full Name"
+                placeholderTextColor={colors.medium}
             />
             <Text style={styles.text}>Choose your study programme</Text>
             
@@ -67,16 +67,15 @@ const [open, setOpen] = useState(false);
                 setOpen={setOpen}
                 setValue={setProgramme}
                 setItems={setItems}
-                style={styles.dropDown}
                 placeholderStyle={{
-                    color: "grey"}}
+                    color: colors.medium}}
                 searchable={true}
     />
            
             <MainButton 
                     title="Continue"
                     style={styles.continueButton}
-                    onPress={() => {dispatch(addUserInfo(username, programme))}}
+                    onPress={() => {dispatch(addUserInfo(username, programme));}}
                     />
         </View>
       
@@ -88,9 +87,6 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: colors.white,
         flex: 1
-    },
-    dropDown: {
-        backgroundColor: 'white'
     },
     text: {
         paddingLeft: 12

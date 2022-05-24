@@ -1,6 +1,7 @@
 import { View, TextInput, StyleSheet, Image, Text } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Input from '../components/Input';
+import colors from '../config/colors';
 
 const DiscoverScreen = ({ navigation }) => {
 
@@ -9,6 +10,7 @@ const DiscoverScreen = ({ navigation }) => {
                 <Input
                 style={[styles.shadowProp, styles.input]}
                 placeholder="Search for events, posts and more"
+                placeholderTextColor={colors.medium}
                 icon="search"
                 />
                 

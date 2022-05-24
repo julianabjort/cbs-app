@@ -6,24 +6,20 @@ import * as SecureStore from 'expo-secure-store';
 
 import colors from '../config/colors';
 import MainButton from '../components/MainButton';
+import ErrorMessage from '../components/ErrorMessage';
 
 const SignupScreen = ({ navigation }) => {
 
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [username, setUsername] = useState('');
-    const e = useSelector(state => state.user.email);
-    const idToken = useSelector(state => state.user.idToken);
+    const errorMessage = useSelector(state => state.user.errorMessage);
 
     async function load() {
         let emailFromSecureStore = await SecureStore.getItemAsync('email');
         let tokenFromSecureStore = await SecureStore.getItemAsync('token');
         if (emailFromSecureStore && tokenFromSecureStore) {
-            console.log("success", emailFromSecureStore);
-
             dispatch(restoreUser(emailFromSecureStore, tokenFromSecureStore));
-
         } else {
             console.log("user logged out");
         }
@@ -40,17 +36,16 @@ const SignupScreen = ({ navigation }) => {
             <Image style={styles.logo} source={require('../assets/logo.png')}></Image>
             <Text style={styles.title}>Create your account</Text>
 
-            <View style={[styles.inputContainer, styles.shadowProp]}>
+            { errorMessage === 'EMAIL_EXISTS' ? 
+            <ErrorMessage error={'Email already exists'}/>
+            : errorMessage === 'INVALID_EMAIL' ?
+            <ErrorMessage error={'Invalid email'}/>
+            : errorMessage === 'INVALID_PASSWORD' ?
+            <ErrorMessage error={'Invalid password'}/>
+            : null
+            } 
 
-            <TextInput 
-                style={styles.signUpInput} 
-                placeholder="Name"
-                placeholderTextColor={colors.medium}
-                onChangeText={setUsername}
-                value={username}
-                autoCapitalize = 'none'
-                autoCorrect={false}
-                 /> 
+            <View style={[styles.inputContainer, styles.shadowProp]}>
 
             <TextInput 
                 style={styles.signUpInput} 
@@ -75,9 +70,6 @@ const SignupScreen = ({ navigation }) => {
                 secureTextEntry={true}
                 textContentType="password"
                  />
-
-            
-            
           
             </View>
             
@@ -88,7 +80,7 @@ const SignupScreen = ({ navigation }) => {
             <View style={styles.buttonContainer}>
                 <MainButton 
                     title="Sign up"
-                    onPress={() => dispatch(signup(email, password))}
+                    onPress={() => {dispatch(signup(email, password, navigation))}}
                 />
             </View>
 

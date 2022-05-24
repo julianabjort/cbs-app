@@ -20,14 +20,15 @@ function Input({ icon, ...otherProps }){
 const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.white,
-        borderRadius: 15,
+        borderRadius: 12,
         padding: 15,
         marginVertical: 10,
         flexDirection: 'row',
         shadowColor: 'grey',
         shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.2,
-        shadowRadius: 8
+        shadowRadius: 8,
+        
     },
     icon: {
         marginRight: 10
