@@ -6,6 +6,7 @@ import { logout } from '../store/actions/UserActions';
 import Title from '../components/Title';
 import MainButton from '../components/MainButton';
 import { fetchUserInfo } from '../store/actions/UserActions';
+import ErrorMessage from '../components/ErrorMessage';
 
 const ProfileScreen = ({ navigation }) => {
     const [chatOn, setChatOn] = useState(false);

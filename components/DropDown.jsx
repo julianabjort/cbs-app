@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import colors from './colors';
+import colors from '../config/colors';
 
 
 export const ICONS = {
@@ -112,15 +112,6 @@ export default StyleSheet.create({
     closeIconContainer: {
         marginLeft: 10
     },
-    listParentLabel: {
-
-    },
-    listChildLabel: {
-
-    },
-    listParentContainer: {
-
-    },
     listChildContainer: {
         paddingLeft: 40,
     },
@@ -148,9 +139,6 @@ export default StyleSheet.create({
     flatListContentContainer: {
         flexGrow: 1
     },
-    customItemContainer: {
-
-    },
     customItemLabel: {
         fontStyle: 'italic'
     },
@@ -160,15 +148,7 @@ export default StyleSheet.create({
         alignItems: 'center',
         padding: 10,
     },
-    listMessageText: {
 
-    },
-    selectedItemContainer: {
-
-    },
-    selectedItemLabel: {
-
-    },
     modalTitle: {
         fontSize: 18,
         color: colors.black

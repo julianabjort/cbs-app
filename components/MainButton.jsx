@@ -15,7 +15,7 @@ function MainButton({ icon, title, onPress, backgroundColor = 'primary', color =
 
 const styles = StyleSheet.create({
     button: {
-        borderRadius: 20,
+        borderRadius: 12,
         paddingVertical: 15,
         marginBottom: 40, 
         flexDirection: 'row',

@@ -9,6 +9,8 @@ import DiscoverScreen from "./../screens/DiscoverScreen";
 import SignupScreen from "./../screens/SignupScreen";
 import LoginScreen from "./../screens/LoginScreen";
 import EditScreen from "../screens/EditScreen";
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
+import NewPasswordScreen from '../screens/NewPasswordScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -19,10 +21,11 @@ const Tab = createBottomTabNavigator();
 const NavigationComponent = ({ navigation }) => {
     const username = useSelector(state => state.user.username)
     const registered = useSelector(state => state.user.registered)
-    // const token = useSelector(state => state.user.idToken)
+    
+    const token = useSelector(state => state.user.idToken)
     return (
         <NavigationContainer >
-            {username !== undefined || registered == true ? (
+            {token !== undefined || registered == true ? (
                 <Tab.Navigator 
                 screenOptions={({ route }) => ({
                     tabBarIcon: ({ focused, color, size }) => {
@@ -45,7 +48,7 @@ const NavigationComponent = ({ navigation }) => {
                   })}
                 >
                 <Tab.Screen name="Home" component={HomeStack} />
-                <Tab.Screen name="Discover" component={DiscoverScreen} />
+                <Tab.Screen name="Discover" component={DiscoverStack} />
                 <Tab.Screen name="Chat" component={ChatScreen}/>
                 <Tab.Screen name="Profile" component={ProfileStack} />
             </Tab.Navigator>
@@ -54,6 +57,8 @@ const NavigationComponent = ({ navigation }) => {
                   <Stack.Screen name="Signup" component={SignupScreen} />
                   <Stack.Screen name="Start" component={StartScreen} />
                   <Stack.Screen name="Login" component={LoginScreen} />
+                  <Stack.Screen name="Forgot Password" component={ForgotPasswordScreen} />
+                  <Stack.Screen name="New Password" component={NewPasswordScreen} />
                 </Stack.Navigator>
                 )}
         </NavigationContainer >
@@ -64,7 +69,6 @@ function ProfileStack() {
   return (
       <Stack.Navigator>
           <Stack.Screen name="View Profile" component={ProfileScreen} options={{headerShown:false}} />
-          <Stack.Screen name="Start" component={StartScreen} />
           <Stack.Screen name="Edit Profile" component={EditScreen} />
       </Stack.Navigator>
   )
@@ -76,6 +80,15 @@ function HomeStack() {
           <Stack.Screen name="Home Screen" component={HomeScreen} options={{headerShown:false}}/>
           <Stack.Screen name="View Event" component={EventScreen}/>
       </Stack.Navigator>
+  )
+}
+
+function DiscoverStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Discover Screen" component={DiscoverScreen} options={{headerShown:false}}/>
+      
+    </Stack.Navigator>
   )
 }
 

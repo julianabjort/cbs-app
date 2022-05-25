@@ -1,4 +1,4 @@
-import { SIGNUP, RESTORE_USER, LOGIN, LOGOUT, ADD_USER_INFO, FETCH_USER_INFO, ERROR } from "../actions/UserActions";
+import { SIGNUP, RESTORE_USER, LOGIN, LOGOUT, ADD_USER_INFO, FETCH_USER_INFO, ERROR, RESET_PASSWORD } from "../actions/UserActions";
 
 
 const initialState = {
@@ -19,7 +19,6 @@ const userReducer = (state = initialState, action) => {
             return {...state, email: action.payload.email, idToken: action.payload.idToken, localId: action.payload.localId, errorMessage: ''}
 
         case LOGIN:
-            // console.log("reducer login", action.payload)
             return {...state, email: action.payload.email, idToken: action.payload.idToken, localId: action.payload.localId, registered: action.payload.registered, errorMessage: '' }
 
         case RESTORE_USER:
@@ -29,14 +28,16 @@ const userReducer = (state = initialState, action) => {
             return { ...state, idToken: undefined, email: undefined, username: undefined, programme: undefined, registered: false }
     
         case ADD_USER_INFO:
-            // console.log("reducer adduserinfo", action.payload)
             return { ...state, username: action.payload.username, programme: action.payload.programme, localId: action.payload.id }
 
         case FETCH_USER_INFO:
-            // console.log("reducer fetchuserinfo", action.payload)
             return { ...state, users: action.payload }
+
         case ERROR:
             return { ...state, errorMessage: action.payload.errorMessage }
+
+        case RESET_PASSWORD:
+            return { ...state, email: action.payload.email, errorMessage: '' }
 
         default:
             return state;

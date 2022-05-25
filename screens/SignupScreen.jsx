@@ -18,8 +18,12 @@ const SignupScreen = ({ navigation }) => {
     async function load() {
         let emailFromSecureStore = await SecureStore.getItemAsync('email');
         let tokenFromSecureStore = await SecureStore.getItemAsync('token');
+        
         if (emailFromSecureStore && tokenFromSecureStore) {
+
+            console.log("success", emailFromSecureStore);
             dispatch(restoreUser(emailFromSecureStore, tokenFromSecureStore));
+
         } else {
             console.log("user logged out");
         }

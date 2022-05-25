@@ -1,6 +1,6 @@
 import * as SecureStore from 'expo-secure-store';
 import { User } from '../../entities/User';
-
+import { useSelector } from 'react-redux';
 
 export const SIGNUP = 'SIGNUP';
 export const LOGIN = 'LOGIN';
@@ -9,6 +9,7 @@ export const RESTORE_USER = 'RESTORE_USER';
 export const ADD_USER_INFO = 'ADD_USER_INFO';
 export const FETCH_USER_INFO = 'FETCH_USER_INFO';
 export const ERROR = 'ERROR';
+export const RESET_PASSWORD = 'RESET_PASSWORD';
 
 export const logout = () => {
     SecureStore.deleteItemAsync('email');
@@ -27,16 +28,14 @@ export const signup = (email, password, navigation) => {
            headers: {
                'Content-Type': 'application/json'
            },
-           body: JSON.stringify({ //javascript to json
-               //key value pairs of data you want to send to server
-               // ...
+           body: JSON.stringify({ 
 
                email: email,
                password: password,
                returnSecureToken: true
            })
        });
-       const data = await response.json(); // json to javascript
+       const data = await response.json(); 
        console.log("sign up data action", data)
 
        if (!response.ok) {
@@ -57,15 +56,13 @@ export const login = (email, password) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ //javascript to json
-                //key value pairs of data you want to send to server
-                // ...
+            body: JSON.stringify({ 
                 email: email,
                 password: password,
                 returnSecureToken: true
             })
         });
-        const data = await response.json(); // json to javascript
+        const data = await response.json(); 
         console.log("login data action", data)
         
  
@@ -123,7 +120,7 @@ export const fetchUserInfo = () => {
             }
         });
 
-        const data = await response.json(); // json to javascript
+        const data = await response.json();
         // console.log("data", data)
         // console.log("ID", id)
 
@@ -143,5 +140,28 @@ export const fetchUserInfo = () => {
         }
     };
 };
+
+export const resetPassword = (email) => {
+    return async (dispatch) => {
+      const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyA5yESumjBrlpxQ_N-IL-PmlDor7oH4Cy8', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email,
+          requestType: 'PASSWORD_RESET'
+        })
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        dispatch({ type: ERROR, payload: { errorMessage: data.error.message } });
+
+      } else {
+        dispatch({ type: RESET_PASSWORD, payload: { email: data.email } });
+      }
+    };
+  };
 
 

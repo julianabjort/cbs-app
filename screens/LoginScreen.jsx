@@ -31,7 +31,7 @@ const LoginScreen = ({ navigation }) => {
     }, [])
 
     return (
-        <View style={{ backgroundColor: "white" }}>
+        <View style={styles.background}>
         
         <View style={styles.container}>
 
@@ -74,6 +74,7 @@ const LoginScreen = ({ navigation }) => {
         </View>
         
         <Text
+            onPress={() => navigation.navigate('Forgot Password')}
             style={[styles.signUpInput, styles.forgotPassword]} >
                 Forgot Password?
             </Text>
@@ -103,6 +104,9 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         marginHorizontal: 30,
         alignItems: 'center',
+    },
+    background: {
+        backgroundColor: colors.white
     },
     logo: {
         width: 150,

@@ -11,7 +11,7 @@ import colors from '../config/colors';
 import { addUserInfo } from '../store/actions/UserActions';
 
 function StartScreen({ navigation }) {
-const dropDownTheme = require("../config/DropDown");
+const dropDownTheme = require("../components/DropDown");
 DropDownPicker.addTheme("ExtraLight", dropDownTheme);
 DropDownPicker.setTheme("ExtraLight");
 
