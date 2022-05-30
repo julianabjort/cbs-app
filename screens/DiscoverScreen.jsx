@@ -1,4 +1,5 @@
 import { View, TextInput, StyleSheet, Image, Text } from 'react-native';
+import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Input from '../components/Input';
 import colors from '../config/colors';
@@ -14,21 +15,30 @@ const DiscoverScreen = ({ navigation }) => {
                 icon="search"
                 />
                 
-                <View style={[styles.card, styles.shadowProp]}>
-                <Image style={styles.image} source={require('../assets/event.png')}/>
+                <View>
+                <TouchableOpacity
+                onPress={() => navigation.navigate('All Events Screen')}>
+                    <View style={[styles.shadowProp, styles.card]}>
                     <Text style={styles.title}>All Events</Text>
+                    </View>
+                </TouchableOpacity>
                 </View>
-
-                <View style={[styles.card, styles.shadowProp]}>
-                <Image style={styles.image} source={require('../assets/event.png')}/>
+                <View>
+                <TouchableOpacity 
+                onPress={() => navigation.navigate('All Organisations Screen')}>
+                    <View style={[styles.shadowProp, styles.card]}>
                     <Text style={styles.title}>All Organizations</Text>
+                    </View>
+                </TouchableOpacity>
                 </View>
-
-                <View style={[styles.card, styles.shadowProp]}>
-                <Image style={styles.image} source={require('../assets/event.png')}/>
+                <View>
+                <TouchableOpacity 
+                onPress={() => navigation.navigate()}>
+                    <View style={[styles.shadowProp, styles.card]}>
                     <Text style={styles.title}>All Posts</Text>
+                    </View>
+                </TouchableOpacity>
                 </View>
-
         </View>
     );
 }
@@ -41,22 +51,22 @@ const styles = StyleSheet.create({
         shadowColor: 'grey',
         shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.2,
-        shadowRadius: 8
+        shadowRadius: 8,
     },
     input: {
-
+        
     },
     card: {
-        backgroundColor: "white",
+        marginVertical: 10,
+        backgroundColor: "purple",
         borderRadius: 15,
-        marginVertical: 15,
-        height: "20%",
+        height: 120,
         justifyContent: 'center',
         alignItems: 'center'
     },
     image: {
         width: '100%',
-        height: 120,
+        height: 140,
         borderRadius: 15,
     },
     title: { 

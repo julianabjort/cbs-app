@@ -14,6 +14,9 @@ import NewPasswordScreen from '../screens/NewPasswordScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import AllEventsScreen from '../screens/AllEventsScreen';
+import AllOrganisationsScreen from '../screens/AllOrganisationsScreen';
+import OrganisationScreen from './../screens/OrganisationScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -78,7 +81,8 @@ function HomeStack() {
   return (
       <Stack.Navigator>
           <Stack.Screen name="Home Screen" component={HomeScreen} options={{headerShown:false}}/>
-          <Stack.Screen name="View Event" component={EventScreen}/>
+          <Stack.Screen name="View Event Home" component={EventScreen}/>
+          <Stack.Screen name="View Organisation Home" component={OrganisationScreen}/>
       </Stack.Navigator>
   )
 }
@@ -87,7 +91,10 @@ function DiscoverStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Discover Screen" component={DiscoverScreen} options={{headerShown:false}}/>
-      
+      <Stack.Screen name="All Events Screen" component={AllEventsScreen}/>
+      <Stack.Screen name="All Organisations Screen" component={AllOrganisationsScreen}/>
+      <Stack.Screen name="View Event Discover" component={EventScreen}/>
+      <Stack.Screen name="View Organisation Discover" component={OrganisationScreen}/>
     </Stack.Navigator>
   )
 }
