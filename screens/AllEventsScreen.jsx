@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, StyleSheet, View, Modal } from "react-native";
+import { FlatList, SectionList, StyleSheet, View, Modal } from "react-native";
 import EventCard from "../components/EventCard";
 import { EVENTS } from "../data";
 import { useSelector, useDispatch } from 'react-redux';
@@ -32,7 +32,30 @@ useEffect(() => {
         <Title>Events</Title>
         <Ionicons name="add-circle-outline" size={28} color={colors.primary} onPress={() => setModalVisible(true)}></Ionicons>
       </View>
-      <FlatList
+      <SectionList
+      sections={[
+        {data: EVENTS, 
+          keyExtractor: event => event.id.toString(),
+          renderItem: ({ item }) => (<EventCard
+              image={item.image}
+              title={item.eventTitle}
+              subTitle={item.eventSubTitle}
+              date={item.eventTime}
+              location={item.eventLocation}
+              onPress={() => navigation.navigate('View Event Discover', { event: item })}/>)
+          },
+          {data: events, 
+            keyExtractor: event => event.id.toString(),
+            renderItem: ({ item }) => (<EventCard
+                image={item.image}
+                title={item.eventTitle}
+                subTitle={item.eventSubTitle}
+                date={item.eventTime}
+                location={item.eventLocation}
+                onPress={() => navigation.navigate('View Event Discover', { event: item })}/>)
+            },
+      ]}/>
+      {/* <FlatList
       data={events}
       // keyExtractor={event => event.id.toString()}
       renderItem={({ item }) => (<EventCard
@@ -43,7 +66,7 @@ useEffect(() => {
         location={item.eventLocation}
         onPress={() => navigation.navigate('View Event Discover', { event: item })}
         />)} 
-      />
+      /> */}
       {/* <FlatList
       data={EVENTS}
       // keyExtractor={event => event.id.toString()}

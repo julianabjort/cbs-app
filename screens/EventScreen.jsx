@@ -12,21 +12,21 @@ const { event } = route.params;
     <View style={styles.container}>
         <Image source={ event.image } style={styles.image}/>
         <View style={styles.content}>
-          <Title style={styles.title}>{ event.title }</Title>
+          <Title style={styles.title}>{ event.eventTitle }</Title>
 
           <View style={styles.row}>
             <Ionicons name="time" size={16} color="black" />
-            <Text style={styles.text}>{ event.date }</Text>
+            <Text style={styles.text}>{ event.eventTime }</Text>
           </View>
           <View style={styles.row}>
             <Ionicons name="location-sharp" size={16} color="black" />
-            <Text style={styles.text}>{ event.location }</Text>
+            <Text style={styles.text}>{ event.eventLocation }</Text>
           </View>
           
         <View style={[styles.row, styles.studOrgContainer]}>
             <Image style={styles.iconImage} source={require('../assets/logo.png')}/>
             <View>
-                <Text style={styles.studOrgTitle}>{ event.subTitle }</Text>
+                <Text style={styles.studOrgTitle}>{ event.eventSubTitle }</Text>
                 <Text style={{ color: colors.light }}>View Page</Text>
             </View>
 

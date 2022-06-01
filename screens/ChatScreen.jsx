@@ -1,4 +1,4 @@
-import { FlatList, View, Text, StyleSheet, TextInput, Button, TouchableOpacity, Pressable, Modal, Alert } from 'react-native';
+import { FlatList, View, Text, StyleSheet, TextInput, Button, TouchableOpacity, Pressable, Modal, Alert, SectionList } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react'
@@ -96,8 +96,53 @@ const user = users.filter(user => user.id == id)[0]
             <Text style={styles.text}>Enable notifications to stay in the loop</Text>
             <Ionicons name="md-notifications" size={24} color="white" />
         </View>
-
-        <FlatList 
+        <SectionList
+        sections={[
+            {data:chatrooms,
+            renderItem: ({ item }) => (
+            <ListItem
+                title={item.title}
+                description="Thank you for your message..."
+                image={require('../assets/logo.png')}
+                date="9:43"
+                onPress={() => console.log("Message selected", item)}
+                renderRightActions={() => (
+                    <View
+                        style={{ backgroundColor: colors.red,
+                        width: 70, justifyContent: 'center', alignItems: 'center'}}>
+                    <Ionicons 
+                        name="trash" 
+                        size={24} 
+                        color="white" 
+                        onPress={() => dispatch(deleteChatroom(item.id))}/>
+                    </View>
+                )}
+            />)
+            },
+            {data:messages,
+                renderItem: ({ item }) => (
+                <ListItem
+                title={item.title}
+                description={item.description}
+                image={item.image}
+                date={item.date}
+                    onPress={() => console.log("Message selected", item)}
+                    renderRightActions={() => (
+                        <View
+                            style={{ backgroundColor: colors.red,
+                            width: 70, justifyContent: 'center', alignItems: 'center'}}>
+                        <Ionicons 
+                            name="trash" 
+                            size={24} 
+                            color="white" 
+                            onPress={() => dispatch(deleteChatroom(item.id))}/>
+                        </View>
+                    )}
+                />)
+                },
+        ]}
+        />
+        {/* <FlatList 
         data={chatrooms}
         renderItem={({ item }) => (<ListItem 
             title={item.title}
@@ -139,7 +184,7 @@ const user = users.filter(user => user.id == id)[0]
             
             />)}
         // ItemSeparatorComponent={ListItemSeparator}
-        />
+        /> */}
 
 
 
