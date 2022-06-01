@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, Image, Switch } from 'react-native';
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
+import { useIsFocused } from '@react-navigation/native';
 
 import { logout } from '../store/actions/UserActions';
 import Title from '../components/Title';
@@ -11,17 +12,19 @@ const ProfileScreen = ({ navigation }) => {
     const [chatOn, setChatOn] = useState(false);
     const [eventOn, setEventOn] = useState(false);
     const email = useSelector(state => state.user.email);
-
-
     const id = useSelector(state => state.user.localId);
     const users = useSelector(state => state.user.users);
     const user = users.filter(user => user.email == email)[0]
 
+    // console.log("last user",users.slice(-1)[0])
+    
+
     const dispatch = useDispatch()
+    const isFocused = useIsFocused();
 
     useEffect(() => {
         dispatch(fetchUserInfo())
-    }, []);
+    }, [isFocused]);
 
     return ( 
     <View style={styles.mainContainer}>

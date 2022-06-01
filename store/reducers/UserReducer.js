@@ -31,7 +31,6 @@ const userReducer = (state = initialState, action) => {
             return { ...state, username: action.payload.username, programme: action.payload.programme, localId: action.payload.id }
 
         case FETCH_USER_INFO:
-            console.log("fetch users", action.payload)
             return { ...state, users: action.payload }
 
         case ERROR:

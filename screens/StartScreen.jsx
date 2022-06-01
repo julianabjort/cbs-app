@@ -8,7 +8,7 @@ import Title from '../components/Title';
 import MainButton from '../components/MainButton';
 import Input from '../components/Input';
 import colors from '../config/colors';
-import { addUserInfo } from '../store/actions/UserActions';
+import { addUserInfo, fetchUserInfo } from '../store/actions/UserActions';
 
 function StartScreen({ navigation }) {
 const dropDownTheme = require("../components/DropDown");
@@ -32,8 +32,6 @@ const [open, setOpen] = useState(false);
       
            <View style={styles.container}>
 
-             
-
              <View style={styles.profileImgContainer}>
                 <Image style={styles.profileImg} source={require('../assets/laufey.jpeg')}></Image>
                 <View style={styles.upload}>
@@ -51,6 +49,7 @@ const [open, setOpen] = useState(false);
                 label="Username"
                 value={username}
                 placeholder="Full Name"
+                autoCorrect={false}
                 placeholderTextColor={colors.medium}
             />
             <Text style={styles.text}>Choose your study programme</Text>
