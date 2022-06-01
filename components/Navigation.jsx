@@ -90,7 +90,7 @@ function DiscoverStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Discover Screen" component={DiscoverScreen} options={{headerShown:false}}/>
-      <Stack.Screen name="All Events Screen" component={AllEventsScreen}/>
+      <Stack.Screen name="All Events Screen" component={AllEventsScreen} options={{headerShown:false}}/>
       <Stack.Screen name="All Organisations Screen" component={AllOrganisationsScreen}/>
       <Stack.Screen name="View Event Discover" component={EventScreen}/>
       <Stack.Screen name="View Organisation Discover" component={OrganisationScreen}/>
