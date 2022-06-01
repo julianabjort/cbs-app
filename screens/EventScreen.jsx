@@ -10,7 +10,7 @@ const { event } = route.params;
 
    return (
     <View style={styles.container}>
-        <Image source={ event.image } style={styles.image}/>
+        <Image source={ event.eventImage } style={styles.image}/>
         <View style={styles.content}>
           <Title style={styles.title}>{ event.eventTitle }</Title>
 

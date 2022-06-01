@@ -37,7 +37,7 @@ useEffect(() => {
         {data: EVENTS, 
           keyExtractor: event => event.id.toString(),
           renderItem: ({ item }) => (<EventCard
-              image={item.image}
+              image={item.eventImage}
               title={item.eventTitle}
               subTitle={item.eventSubTitle}
               date={item.eventTime}

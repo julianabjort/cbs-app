@@ -1,7 +1,7 @@
 export const EVENTS = [
     {
         id: 1,
-        image: require("./assets/yoga.png"),
+        eventImage: require("./assets/yoga.png"),
         eventTitle: "Yoga and meditation",
         eventSubTitle: "CBS Yoga",
         eventTime: "Mon, 1.apr 15:00 - 18:00",
@@ -9,7 +9,7 @@ export const EVENTS = [
     },
     {
         id: 2,
-        image: require("./assets/film.png"),
+        eventImage: require("./assets/film.png"),
         eventTitle: "CBS Film presents: Ghost World",
         eventSubTitle: "CBS Film",
         eventTime: "Mon, 1.apr 15:00 - 18:00",
@@ -17,7 +17,7 @@ export const EVENTS = [
     },
     {
         id: 3,
-        image: require("./assets/art.png"),
+        eventImage: require("./assets/art.png"),
         eventTitle: "CBS Art at Cisternerne",
         eventSubTitle: "CBS Art",
         eventTime: "Mon, 1.apr 15:00 - 18:00",

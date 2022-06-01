@@ -4,7 +4,7 @@ export const FETCH_EVENTS = 'FETCH_EVENTS';
 import { Event } from "../../entities/Event";
 
 export const fetchEvents = () => {
-  return async (dispatch, getState) => {
+  return async (dispatch: any, getState: any) => {
     const idToken = getState().user.idToken
     const response = await fetch('https://cbs-webdev-default-rtdb.europe-west1.firebasedatabase.app/events.json?auth='
     + idToken, {
@@ -28,8 +28,8 @@ export const fetchEvents = () => {
   };
 }
 
-export const createEvent = (eventTitle, eventSubTitle, eventTime, eventLocation) => {
-  return async (dispatch, getState) => {
+export const createEvent = (eventTitle: string, eventSubTitle: string, eventTime: string, eventLocation: string) => {
+  return async (dispatch: any, getState: any) => {
     const idToken = getState().user.idToken
     const response = await fetch('https://cbs-webdev-default-rtdb.europe-west1.firebasedatabase.app/events.json?auth='
     + idToken, {

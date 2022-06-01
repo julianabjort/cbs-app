@@ -35,11 +35,11 @@ const HomeScreen = ({ navigation }) => {
             {data: EVENTS, 
                 keyExtractor: event => event.id.toString(),
                 renderItem: ({ item }) => (<EventCard
-                    image={item.image}
-                    title={item.title}
-                    subTitle={item.subTitle}
-                    date={item.date}
-                    location={item.location}
+                    image={item.eventImage}
+                    title={item.eventTitle}
+                    subTitle={item.eventSubTitle}
+                    date={item.eventTime}
+                    location={item.eventLocation}
                     onPress={() => navigation.navigate('View Event Home', { event: item })}/>)
                 },
         ]}/>
