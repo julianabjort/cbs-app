@@ -47,7 +47,7 @@ useEffect(() => {
           {data: events, 
             keyExtractor: event => event.id.toString(),
             renderItem: ({ item }) => (<EventCard
-                image={item.image}
+                image={require('../assets/newEvent.png')}
                 title={item.eventTitle}
                 subTitle={item.eventSubTitle}
                 date={item.eventTime}
