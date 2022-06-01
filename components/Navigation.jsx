@@ -28,7 +28,7 @@ const NavigationComponent = ({ navigation }) => {
     const token = useSelector(state => state.user.idToken)
     return (
         <NavigationContainer >
-            {token !== undefined || registered == true ? (
+            {token !== undefined ? (
                 <Tab.Navigator 
                 screenOptions={({ route }) => ({
                     tabBarIcon: ({ focused, color, size }) => {
@@ -58,7 +58,6 @@ const NavigationComponent = ({ navigation }) => {
             ): (
                 <Stack.Navigator>
                   <Stack.Screen name="Signup" component={SignupScreen} />
-                  <Stack.Screen name="Start" component={StartScreen} />
                   <Stack.Screen name="Login" component={LoginScreen} />
                   <Stack.Screen name="Forgot Password" component={ForgotPasswordScreen} />
                   <Stack.Screen name="New Password" component={NewPasswordScreen} />
@@ -72,7 +71,7 @@ function ProfileStack() {
   return (
       <Stack.Navigator>
           <Stack.Screen name="View Profile" component={ProfileScreen} options={{headerShown:false}} />
-          <Stack.Screen name="Edit Profile" component={EditScreen} />
+          <Stack.Screen name="Edit Profile" component={StartScreen} />
       </Stack.Navigator>
   )
 }

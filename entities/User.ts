@@ -3,7 +3,7 @@ export class User {
         public id: string,
         public username: string, 
         public programme: string, 
-        public image?: string,
+        public email?: string,
         ) {
     }
 }

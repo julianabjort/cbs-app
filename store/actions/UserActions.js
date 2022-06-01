@@ -21,7 +21,7 @@ export const restoreUser = (email, token) => {
     return { type: RESTORE_USER, payload: { email, idToken: token } };
 };
 
-export const signup = (email, password, navigation) => {
+export const signup = (email, password) => {
    return async dispatch => {
        const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA5yESumjBrlpxQ_N-IL-PmlDor7oH4Cy8', {
            method: 'POST',
@@ -44,7 +44,7 @@ export const signup = (email, password, navigation) => {
             await SecureStore.setItemAsync('email', data.email);
             await SecureStore.setItemAsync('token', data.idToken);
             dispatch({type: SIGNUP, payload: {email: data.email, idToken: data.idToken, localId: data.localId}})
-            navigation.navigate("Start")
+            
        }
    };
 };
@@ -83,6 +83,7 @@ export const login = (email, password) => {
     return async (dispatch, getState) => {
         const idToken = getState().user.idToken
         const id = getState().user.localId
+        const email = getState().user.email
 
         const response = await fetch('https://cbs-webdev-default-rtdb.europe-west1.firebasedatabase.app/users.json?auth=' + idToken, {
             method: 'POST',
@@ -91,6 +92,7 @@ export const login = (email, password) => {
             },
             body: JSON.stringify({ 
                 id: id,
+                email: email,
                 username: username, 
                 programme: programme
             })
@@ -101,7 +103,7 @@ export const login = (email, password) => {
             console.log("Error")
         } else {
 
-            dispatch({type: ADD_USER_INFO, payload: {username: username, programme: programme, id: id} })  
+            dispatch({type: ADD_USER_INFO, payload: {id: id, email: email, username: username, programme: programme} })  
         };
  };
 };
@@ -131,8 +133,8 @@ export const fetchUserInfo = () => {
             let users = [];
             for (let key in data) {
                 const userObject = data[key]
-                const user = new User(userObject.id, userObject.username, userObject.programme)
-                console.log("data key", data[key])
+                const user = new User(userObject.id, userObject.username, userObject.programme, userObject.email)
+                // console.log("data key", data[key])
                 users.push(user)
             }
            

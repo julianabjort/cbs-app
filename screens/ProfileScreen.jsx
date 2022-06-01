@@ -6,7 +6,6 @@ import { logout } from '../store/actions/UserActions';
 import Title from '../components/Title';
 import MainButton from '../components/MainButton';
 import { fetchUserInfo } from '../store/actions/UserActions';
-import ErrorMessage from '../components/ErrorMessage';
 
 const ProfileScreen = ({ navigation }) => {
     const [chatOn, setChatOn] = useState(false);
@@ -16,7 +15,7 @@ const ProfileScreen = ({ navigation }) => {
 
     const id = useSelector(state => state.user.localId);
     const users = useSelector(state => state.user.users);
-    const user = users.filter(user => user.id == id)[0]
+    const user = users.filter(user => user.email == email)[0]
 
     const dispatch = useDispatch()
 

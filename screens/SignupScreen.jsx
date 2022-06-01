@@ -84,7 +84,7 @@ const SignupScreen = ({ navigation }) => {
             <View style={styles.buttonContainer}>
                 <MainButton 
                     title="Sign up"
-                    onPress={() => {dispatch(signup(email, password, navigation))}}
+                    onPress={() => {dispatch(signup(email, password))}}
                 />
             </View>
 

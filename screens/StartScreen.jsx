@@ -31,12 +31,8 @@ const [open, setOpen] = useState(false);
    return (
       
            <View style={styles.container}>
-            
-            <View style={styles.logoContainer}>
-                <Image style={styles.logo} source={require('../assets/logo.png')}></Image>
-            </View>
 
-            <Title>Before we start..</Title>  
+             
 
              <View style={styles.profileImgContainer}>
                 <Image style={styles.profileImg} source={require('../assets/laufey.jpeg')}></Image>
@@ -73,9 +69,9 @@ const [open, setOpen] = useState(false);
     />
            
             <MainButton 
-                    title="Continue"
+                    title="Save Changes"
                     style={styles.continueButton}
-                    onPress={() => {dispatch(addUserInfo(username, programme));}}
+                    onPress={() => {dispatch(addUserInfo(username, programme)); navigation.navigate("View Profile")}}
                     />
         </View>
       
