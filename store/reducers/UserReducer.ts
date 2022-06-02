@@ -13,7 +13,12 @@ const initialState = {
   
 };
 
-const userReducer = (state = initialState, action) => {
+export interface ActionInterface {
+    type: string;
+    payload: any;
+  }
+
+const userReducer = (state = initialState, action: ActionInterface) => {
     switch (action.type) {
         case SIGNUP:
             return {...state, email: action.payload.email, idToken: action.payload.idToken, localId: action.payload.localId, errorMessage: ''}
