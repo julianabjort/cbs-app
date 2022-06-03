@@ -83,12 +83,11 @@ const user = users.filter(user => user.id == id)[0]
 
         <View style={styles.top}>
         
-        { user !== undefined ? 
+        
           
-                <Title>{user.username}</Title>
-                :
+                
                 <Title>Chat</Title>
-            }
+            
         <Ionicons name="create-outline" size={24} color={colors.primary} onPress={() => setModalVisible(true)}/>
         </View>
 

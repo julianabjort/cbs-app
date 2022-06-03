@@ -54,6 +54,7 @@ const NavigationComponent = ({ navigation }) => {
                 <Tab.Screen name="Discover" component={DiscoverStack} />
                 <Tab.Screen name="Chat" component={ChatScreen}/>
                 <Tab.Screen name="Profile" component={ProfileStack} />
+                
             </Tab.Navigator>
             ): (
                 <Stack.Navigator>

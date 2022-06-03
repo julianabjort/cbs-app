@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, Button } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import React from 'react';
 import { useState, useEffect } from 'react'
@@ -31,7 +31,6 @@ const [open, setOpen] = useState(false);
    return (
       
            <View style={styles.container}>
-
              <View style={styles.profileImgContainer}>
                 <Image style={styles.profileImg} source={require('../assets/laufey.jpeg')}></Image>
                 <View style={styles.upload}>

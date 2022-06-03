@@ -34,6 +34,16 @@ useEffect(() => {
       </View>
       <SectionList
       sections={[
+        {data: events, 
+          keyExtractor: event => event.id.toString(),
+          renderItem: ({ item }) => (<EventCard
+              image={require('../assets/newEvent.png')}
+              title={item.eventTitle}
+              subTitle={item.eventSubTitle}
+              date={item.eventTime}
+              location={item.eventLocation}
+              onPress={() => navigation.navigate('View Event Discover', { event: item })}/>)
+          },
         {data: EVENTS, 
           keyExtractor: event => event.id.toString(),
           renderItem: ({ item }) => (<EventCard
@@ -44,16 +54,6 @@ useEffect(() => {
               location={item.eventLocation}
               onPress={() => navigation.navigate('View Event Discover', { event: item })}/>)
           },
-          {data: events, 
-            keyExtractor: event => event.id.toString(),
-            renderItem: ({ item }) => (<EventCard
-                image={require('../assets/newEvent.png')}
-                title={item.eventTitle}
-                subTitle={item.eventSubTitle}
-                date={item.eventTime}
-                location={item.eventLocation}
-                onPress={() => navigation.navigate('View Event Discover', { event: item })}/>)
-            },
       ]}/>
       {/* <FlatList
       data={events}

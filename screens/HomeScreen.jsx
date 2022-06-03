@@ -2,10 +2,10 @@ import { FlatList, SectionList, View } from 'react-native';
 import EventCard from '../components/EventCard';
 import OrganisationCard from '../components/OrganisationCard';
 import { EVENTS, ORGANISATIONS } from '../data';
-
+import { Chatroom } from '../entities/Chatroom';
 
 const HomeScreen = ({ navigation }) => {
-// const chatroom = new Chatroom(2, [], '');
+// const chatroom = new Chatroom('hello', [], 'hello')
     
     return (
         <View>
