@@ -17,12 +17,12 @@ export const logout = () => {
     return { type: LOGOUT }
 }
 
-export const restoreUser = (email, token) => {
+export const restoreUser = (email: string, token: string) => {
     return { type: RESTORE_USER, payload: { email, idToken: token } };
 };
 
-export const signup = (email, password) => {
-   return async dispatch => {
+export const signup = (email: string, password: string) => {
+   return async (dispatch: Function) => {
        const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA5yESumjBrlpxQ_N-IL-PmlDor7oH4Cy8', {
            method: 'POST',
            headers: {
@@ -49,8 +49,8 @@ export const signup = (email, password) => {
    };
 };
 
-export const login = (email, password) => {
-    return async dispatch => {
+export const login = (email: string, password: string) => {
+    return async (dispatch: Function) => {
         const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA5yESumjBrlpxQ_N-IL-PmlDor7oH4Cy8', {
             method: 'POST',
             headers: {
@@ -78,9 +78,9 @@ export const login = (email, password) => {
     };
  };
 
- export const addUserInfo = (username, programme) => {
+ export const addUserInfo = (username: string, programme: string) => {
     
-    return async (dispatch, getState) => {
+    return async (dispatch: any, getState: any) => {
         const idToken = getState().user.idToken
         const id = getState().user.localId
         const email = getState().user.email
@@ -109,7 +109,7 @@ export const login = (email, password) => {
 };
 
 export const fetchUserInfo = () => {
-    return async (dispatch, getState) => {
+    return async (dispatch: any, getState: any) => {
         const idToken = getState().user.idToken
         const id = getState().user.localId
         const response = await fetch(
@@ -143,8 +143,8 @@ export const fetchUserInfo = () => {
     };
 };
 
-export const resetPassword = (email) => {
-    return async (dispatch) => {
+export const resetPassword = (email: string) => {
+    return async (dispatch: Function) => {
       const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyA5yESumjBrlpxQ_N-IL-PmlDor7oH4Cy8', {
         method: 'POST',
         headers: {
